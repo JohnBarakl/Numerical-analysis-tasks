@@ -10,11 +10,30 @@ fig, ax = plt.subplots()
 ax.plot(x, fx)
 ax.grid()
 ax.axhline(c="black")
-plt.title("Η γραφική παράσταση της f(x) = e^{sin^{3}x)} + x^6 - 2x^4 - x^3 -1")
+plt.title("Η γραφική παράσταση της $f(x) = e^{sin^{3}x} + x^6 - 2x^4 - x^3 -1$")
 plt.xlabel("x")
 plt.ylabel("f(x)")
 
-#plt.rcParams.update({"text.usetex": True})
+
+ax.annotate("Ρίζες",
+            xy=(0, 0), xycoords='data',
+            xytext=(-0.15, 5), textcoords='data',
+            arrowprops=dict(arrowstyle="->",
+                            connectionstyle="arc3"),
+            )
+
+ax.annotate("Ρίζες",
+            xy=(-1.197624, 0), xycoords='data',
+            xytext=(-0.15, 5), textcoords='data',
+            arrowprops=dict(arrowstyle="->",
+                            connectionstyle="arc3"),
+            )
+
+ax.annotate("Ρίζες",
+            xy=(1.530134, 0), xycoords='data',
+            xytext=(-0.15, 5), textcoords='data',
+            arrowprops=dict(arrowstyle="->",
+                            connectionstyle="arc3"),
+            )
 
 plt.show()
-#plt.savefig('ex1Plot.pdf')
