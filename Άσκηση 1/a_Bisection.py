@@ -4,22 +4,24 @@ from math import e
 
 
 def f(x):
-    return e ** (sin(x) ** 3) + x ** 6 - 2 * x ** 4 - x ** 3 - 1 # Ορισμός της f(x)
+    return e ** (sin(x) ** 3) + x ** 6 - 2 * x ** 4 - x ** 3 - 1  # Ορισμός της f(x)
 
 
 def bisection(function, range_beginning, range_ending, digits_of_precision):
+    iteration_counter = 0
+
     f = function
     a = range_beginning
     b = range_ending
     fa = f(a)
     fb = f(b)
 
-    m = (a+b)/2
+    m = (a + b) / 2
     fm = f(m)
 
     while True:
         if fm == 0:
-            return m
+            return m, iteration_counter
         elif fa * fm < 0:
             fb = fm
             b = m
@@ -27,15 +29,22 @@ def bisection(function, range_beginning, range_ending, digits_of_precision):
             fa = fm
             a = m
 
+        iteration_counter += 1
+
         old_m = m
         m = (a + b) / 2
         fm = f(m)
 
-        if abs(old_m - m) < 0.5*(10**(-1 * digits_of_precision)):
-            return m
+        if abs(old_m - m) < 0.5 * (10 ** (-1 * digits_of_precision)):
+            return m, iteration_counter
 
 
-print("Η ρίζα στο διάστημα [-2, -0.5]: ", bisection(f, -2, -0.5, 5))
-print("Η ρίζα στο διάστημα [-0.5,0.5]: ", bisection(f, -0.5, 0.5, 5))
-print("Η ρίζα στο διάστημα [0.5, 2]: ", bisection(f, 0.5, 2, 5))
+root, loops_counter = bisection(f, -2, -0.5, 5)
+print("Η ρίζα στο διάστημα [-2, -0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+
+root, loops_counter = bisection(f, -0.5, 0.5, 5)
+print("Η ρίζα στο διάστημα [-0.5,0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+
+root, loops_counter = bisection(f, 0.5, 2, 5)
+print("Η ρίζα στο διάστημα [0.5, 2]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
 
