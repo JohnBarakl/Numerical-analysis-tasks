@@ -15,6 +15,7 @@ plt.xlabel("x")
 plt.ylabel("f(x)")
 
 
+
 ax.annotate("Ρίζες",
             xy=(0, 0), xycoords='data',
             xytext=(-0.15, 5), textcoords='data',

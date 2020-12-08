@@ -4,7 +4,7 @@ from math import e
 
 
 def f(x):
-    return e ** (sin(x) ** 3) + x ** 6 - 2 * x ** 4 - x ** 3 - 1  # Ορισμός της f(x)
+    return e ** (sin(x) ** 3) + x ** 6 - 2 * x ** 4 - x ** 3 - 1  # The function definition
 
 
 def bisection(function, range_beginning, range_ending, digits_of_precision):
@@ -40,11 +40,8 @@ def bisection(function, range_beginning, range_ending, digits_of_precision):
 
 
 root, loops_counter = bisection(f, -2, -0.5, 5)
-print("Η ρίζα στο διάστημα [-2, -0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
-
-root, loops_counter = bisection(f, -0.5, 0.5, 5)
-print("Η ρίζα στο διάστημα [-0.5,0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+print("The root in the domain [-2, -0.5]: {:5f} was calculated in {:d} repetitions".format(round(root, 5), loops_counter))
 
 root, loops_counter = bisection(f, 0.5, 2, 5)
-print("Η ρίζα στο διάστημα [0.5, 2]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+print("The root in the domain [0.5, 2]: {:5f} was calculated in {:d} repetitions".format(round(root, 5), loops_counter))
 
