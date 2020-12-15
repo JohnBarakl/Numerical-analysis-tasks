@@ -33,11 +33,13 @@ def newton_raphson(function, function_derivative, starting_point, digits_of_prec
                 x = x_next
 
 root, loops_counter = newton_raphson(f, f_derivative, -1.5, 5)
-print("Η ρίζα στο διάστημα [-2, -0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+print("The root near -1.5: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = newton_raphson(f, f_derivative, 0.001, 5)
-print("Η ρίζα στο διάστημα [-0.5,0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+root, loops_counter = newton_raphson(f, f_derivative, 0.6, 5)
+print("The root near 0: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = newton_raphson(f, f_derivative, 1.5, 5)
-print("Η ρίζα στο διάστημα [0.5, 2]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+root, loops_counter = newton_raphson(f, f_derivative, 1.75, 5)
+print("The root near 1.75: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
+def fpp(x):
+    return 9*e**(sin(x)**3)*(cos(x)**2)*(sin(x)**4)-3*e**(sin(x)**3)*(sin(x)**3)+6*e**(sin(x)**3)*(cos(x)**2)*sin(x)+30*x**4-24*x**2-6*x

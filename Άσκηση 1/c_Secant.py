@@ -32,10 +32,8 @@ def secant(function, range_beginning, range_ending, digits_of_precision):
 root, loops_counter = secant(f, -2, -1, 5)
 print("Η ρίζα στο διάστημα [-2, -1]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
 
-root, loops_counter = secant(f, -0.1, 0.1, 5)
+root, loops_counter = secant(f, -0.1, 0.15, 5)
 print("Η ρίζα στο διάστημα [-0.5,0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
 
 root, loops_counter = secant(f, 1.25, 2, 5)
 print("Η ρίζα στο διάστημα [1.25, 2]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
-
-print(f(0.1))

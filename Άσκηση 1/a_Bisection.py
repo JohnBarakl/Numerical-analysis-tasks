@@ -40,8 +40,10 @@ def bisection(function, range_beginning, range_ending, digits_of_precision):
 
 
 root, loops_counter = bisection(f, -2, -0.5, 5)
-print("The root in the domain [-2, -0.5]: {:5f} was calculated in {:d} repetitions".format(round(root, 5), loops_counter))
+print("The root in [-2, -0.5]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = bisection(f, 0.5, 2, 5)
-print("The root in the domain [0.5, 2]: {:5f} was calculated in {:d} repetitions".format(round(root, 5), loops_counter))
+print("The root in [0.5, 2]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
+root, loops_counter = bisection(f, -0.5, 0.5, 5)
+print("The root in [-0.5, 0.5]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
