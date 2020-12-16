@@ -4,16 +4,16 @@ from math import e
 
 
 def f(x):
-    return e ** (sin(x) ** 3) + x ** 6 - 2 * x ** 4 - x ** 3 - 1  # Ορισμός της f(x)
+    return e ** (sin(x) ** 3) + x ** 6 - 2 * x ** 4 - x ** 3 - 1
 
 
-def secant(function, range_beginning, range_ending, digits_of_precision):
+def secant(function, point_one, point_two, digits_of_precision):
     iteration_counter = 0
 
     f = function
 
-    x1 = range_beginning  # Θεωρώ ως πρώτο σημείο την το αριστερό άκρο του διαστήματος
-    x2 = range_ending  # Θεωρώ ως δεύτερο σημείο την το δεξί άκρο του διαστήματος
+    x1 = point_one
+    x2 = point_two
 
     while True:
         if f(x2) == 0:
@@ -29,11 +29,11 @@ def secant(function, range_beginning, range_ending, digits_of_precision):
                 x2 = x_next
 
 
-root, loops_counter = secant(f, -2, -1, 5)
-print("Η ρίζα στο διάστημα [-2, -1]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+root, loops_counter = secant(f, -1.5, -1.0, 5)
+print("The root in [-1.5, -1.0]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = secant(f, -0.1, 0.15, 5)
-print("Η ρίζα στο διάστημα [-0.5,0.5]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+root, loops_counter = secant(f, -0.5, 0.5, 5)
+print("The root in [-0.5, 0.5]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = secant(f, 1.25, 2, 5)
-print("Η ρίζα στο διάστημα [1.25, 2]: {:f} που υπολογίστηκε σε {:d} επαναλήψεις".format(root, loops_counter))
+root, loops_counter = secant(f, 1.25, 1.75, 5)
+print("The root in [1.25, 1.75]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
