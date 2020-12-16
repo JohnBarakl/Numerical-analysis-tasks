@@ -1,7 +1,7 @@
 def vector_subtraction(lhs_vector, rhs_vector):
     lhs_copy = []
     for i in range(len(lhs_vector)):
-        lhs_copy.append(i)
+        lhs_copy.append(lhs_vector[i])
 
     for i in range(len(lhs_copy)):
         lhs_copy[i] -= rhs_vector[i]
@@ -21,7 +21,6 @@ def max_norm(vector):
 
 def gauss_seidel(A, b, initial_guess, digits_of_precision):
     x_old = [i for i in initial_guess]
-
     while True:
         x = x_old.copy()
 
@@ -42,7 +41,7 @@ def gauss_seidel(A, b, initial_guess, digits_of_precision):
             x_old = x
 
 
-n = 10
+n = 10000
 
 testA = [[0 for it in range (n)] for itj in range (n) ]
 
@@ -56,7 +55,7 @@ for i in range(n-1):
     testA[i+1][i] = testA[i][i+1] = -2
 testA[n-1][n-1] = 5
 
-begin_x = [0.0 for i in range(len(testA))]
+begin_x = [1.5 for i in range(len(testA))]
 
 solution = gauss_seidel(testA, testB, begin_x, 4)
 
