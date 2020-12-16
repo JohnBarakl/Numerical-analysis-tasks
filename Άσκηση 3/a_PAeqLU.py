@@ -31,13 +31,25 @@ def LU(A, b):
             U[other_row_num][row_number] = U[other_row_num][row_number] / U[row_number][row_number]  # multiplier
             for col_number in range(row_number + 1, len(U)):
                 U[other_row_num][col_number] = U[other_row_num][col_number] - (U[other_row_num][row_number])*U[row_number][col_number]
+
+    L = [[0 for i in range(len(U))] for j in range(len(U)) ]
+    for i in range(len(U)): L[i][i] = 1
+    for i in range(1, len(U)):
+        for j in range(i//2+1):
+            L[i][j] = U[i][j]
+            U[i][j] = 0
+
+
+
+
     return U
 
 
 m = LU(
     [
-        [2, 3],
-        [3, 2]
+        [2, 1, 5],
+        [4, 4, -4],
+        [1, 3, 1]
     ],
     []
 )
