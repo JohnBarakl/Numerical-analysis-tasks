@@ -12,12 +12,6 @@ def matrix_multiplication(lhs_matrix, rhs_matrix):
     return result
 
 
-def matrix_subtraction(left_handside, right_handside):
-    for i in range(len(left_handside)):
-        for j in range(len(left_handside[i])):
-            left_handside[i][j] -= right_handside[i][j]
-
-
 def chompsky_update_submatrix(matrix, prev_diagonal_position):
     rest_of_column = []
     rest_of_column_transpose = [[]]
