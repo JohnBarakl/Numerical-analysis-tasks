@@ -1,7 +1,6 @@
 import math
 from math import sin
 from math import cos
-from math import e
 
 
 def modified_newton_raphson(function, function_derivative, function_second_derivative, starting_point, digits_of_precision):
@@ -34,16 +33,17 @@ def f_derivative(x):
     return - 282 * (cos(x) ** 2) * sin(x) + 24 * sin(x) + 354 * sin(x) * cos(x) - 432 * (sin(x) ** 3) * cos(x) + 216 * (cos(x) ** 2) * (sin(x) ** 3) - 144 * (cos(x) ** 4) * sin(x)
 
 
-def f_second_derivtive(x):
+def f_second_derivative(x):
     return 564 * cos(x) * (sin(x) ** 2) - 282 * (cos(x) ** 3) + 24 * cos(x) + 354 * (cos(x) ** 2) - 354 * (sin(x) ** 2) - 1296 * (cos(x) ** 2) * (sin(x) ** 2) + 432 * (sin(x) ** 4) - 432 * cos(x) * (sin(x) ** 4) \
            + 648 * (cos(x) ** 3) * (sin(x) ** 2) + 576 * (cos(x) ** 3) * (sin(x) ** 2) - 144 * (cos(x) ** 5)
 
 
-root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivtive, 0.8, 5)
-print("The root near 0.8: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+if __name__ == "a_Modified_Newton_Raphson":
+    root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 0.8, 5)
+    print("The root near 0.8: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivtive, 1.0, 5)
-print("The root near 1.05: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+    root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 1.0, 5)
+    print("The root near 1.05: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivtive, 2.3, 5)
-print("The root near 2.25: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+    root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 2.3, 5)
+    print("The root near 2.25: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
