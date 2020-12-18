@@ -38,7 +38,7 @@ def f_second_derivative(x):
            + 648 * (cos(x) ** 3) * (sin(x) ** 2) + 576 * (cos(x) ** 3) * (sin(x) ** 2) - 144 * (cos(x) ** 5)
 
 
-if __name__ == "a_Modified_Newton_Raphson":
+if __name__ == '__main__':
     root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 0.8, 5)
     print("The root near 0.8: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 

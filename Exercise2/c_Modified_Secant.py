@@ -35,7 +35,7 @@ def f(x):
     return 94 * (cos(x) ** 3) - 24 * cos(x) + 177 * (sin(x) ** 2) - 108 * (sin(x) ** 4) - 72 * (cos(x) ** 3) * (sin(x) ** 2) - 65
 
 
-if __name__ == "c_Modified_Secant":
+if __name__ == "__main__":
     root, loops_counter = modified_secant(f, 0.8, 0.85, 0.9, 5)
     print("The root in [0.8, 0.9]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 

@@ -39,7 +39,7 @@ def f(x):
     return 94 * (cos(x) ** 3) - 24 * cos(x) + 177 * (sin(x) ** 2) - 108 * (sin(x) ** 4) - 72 * (cos(x) ** 3) * (sin(x) ** 2) - 65
 
 
-if __name__ == "b_Modified_Bisection":
+if __name__ == '__main__':
     root, loops_counter = modified_bisection(f, 0.8, 1.0, 5)
     print("The root in [0.8, 0.95]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
