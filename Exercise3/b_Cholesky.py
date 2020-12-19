@@ -12,7 +12,7 @@ def matrix_multiplication(lhs_matrix, rhs_matrix):
     return result
 
 
-def chompsky_update_submatrix(matrix, prev_diagonal_position):
+def cholesky_update_submatrix(matrix, prev_diagonal_position):
     rest_of_column = []
     rest_of_column_transpose = [[]]
     for row in range(prev_diagonal_position + 1, len(matrix)):
@@ -26,7 +26,7 @@ def chompsky_update_submatrix(matrix, prev_diagonal_position):
             matrix[i + prev_diagonal_position + 1][j + prev_diagonal_position + 1] -= submatrix_to_remove[i][j]
 
 
-def chompsky_core(matrix, diagonal_position):
+def cholesky_core(matrix, diagonal_position):
     if (diagonal_position >= len(matrix)):
         return matrix
 
@@ -35,20 +35,11 @@ def chompsky_core(matrix, diagonal_position):
         matrix[i][diagonal_position] = matrix[i][diagonal_position] / matrix[diagonal_position][diagonal_position]
         matrix[diagonal_position][i] = 0
 
-    chompsky_update_submatrix(matrix, diagonal_position)
+    cholesky_update_submatrix(matrix, diagonal_position)
 
-    return chompsky_core(matrix, diagonal_position + 1)
+    return cholesky_core(matrix, diagonal_position + 1)
 
 
-def chompsky(matrix):
-    return chompsky_core(matrix, 0)
+def cholesky(matrix):
+    return cholesky_core(matrix, 0)
 
-m = chompsky(
-    [
-        [4, -2],
-        [-2, 6]
-    ]
-)
-
-for f in m:
-    print(f)

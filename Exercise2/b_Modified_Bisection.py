@@ -1,6 +1,3 @@
-import math
-from math import sin
-from math import cos
 import random
 
 def modified_bisection(function, range_beginning, range_ending, digits_of_precision):
@@ -12,65 +9,24 @@ def modified_bisection(function, range_beginning, range_ending, digits_of_precis
     fa = f(a)
     fb = f(b)
 
-    m = random.uniform(a, b)
-    fm = f(m)
+    r = random.uniform(a, b)
+    fr = f(r)
 
     while True:
-        if fm == 0:
-            return m, iteration_counter
-        elif fa * fm < 0:
-            fb = fm
-            b = m
+        if fr == 0:
+            return r, iteration_counter
+        elif fa * fr < 0:
+            fb = fr
+            b = r
         else:
-            fa = fm
-            a = m
+            fa = fr
+            a = r
 
         iteration_counter += 1
 
-        old_m = m
-        m = (a + b) / 2
-        fm = f(m)
+        old_r = r
+        r = random.uniform(a, b)
+        fr = f(r)
 
-        if abs(old_m - m) < 0.5 * (10 ** (-1 * digits_of_precision)):
-            return m, iteration_counter
-
-
-def f(x):
-    return 94 * (cos(x) ** 3) - 24 * cos(x) + 177 * (sin(x) ** 2) - 108 * (sin(x) ** 4) - 72 * (cos(x) ** 3) * (sin(x) ** 2) - 65
-
-
-if __name__ == '__main__':
-    root, loops_counter = modified_bisection(f, 0.8, 1.0, 5)
-    print("The root in [0.8, 0.95]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
-
-    root, loops_counter = modified_bisection(f, 1.0, 1.1, 5)
-    print("The root in [1.0, 1.1]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
-
-    root, loops_counter = modified_bisection(f, 2.2, 2.4, 5)
-    print("The root in [2.2, 2.4]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
-
-    print()
-
-    print("First root:")
-    temp_sum = 0
-    for i in range(10):
-        root, loops_counter = modified_bisection(f, 0.8, 1.0, 5)
-        temp_sum += loops_counter
-        print("\tRoot: {:f} calculated in {:d} repetitions".format(root, loops_counter))
-    print("\tMean: {:f} repetitions".format(temp_sum/10))
-
-    print("Second root:")
-    temp_sum = 0
-    for i in range(10):
-        root, loops_counter = modified_bisection(f, 1.0, 1.1, 5)
-        temp_sum += loops_counter
-        print("\tRoot: {:f} calculated in {:d} repetitions".format(root, loops_counter))
-    print("\tMean: {:f} repetitions".format(temp_sum/10))
-
-    print("Third root:")
-    temp_sum = 0
-    for i in range(10):
-        root, loops_counter = modified_bisection(f, 2.2, 2.4, 5)
-        temp_sum += loops_counter
-        print("\tRoot: {:f} calculated in {:d} repetitions".format(root, loops_counter))
-    print("\tMean: {:f} repetitions".format(temp_sum/10))
+        if abs(old_r - r) < 0.5 * (10 ** (-1 * digits_of_precision)):
+            return r, iteration_counter

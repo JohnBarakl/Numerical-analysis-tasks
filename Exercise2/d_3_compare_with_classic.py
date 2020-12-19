@@ -94,21 +94,21 @@ def f_second_derivative(x):
 print("Bisection Comparison:\n")
 print("Classic Bisection:")
 
-root, loops_counter = classic_bisection(f, 0.8, 1.0, 5)
-print("\tThe root in [0.8, 0.95]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+root, loops_counter = classic_bisection(f, 0.8, 0.9, 5)
+print("\tThe root in [0.8, 1.0]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = classic_bisection(f, 1.0, 1.1, 5)
-print("\tThe root in [1.0, 1.1]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+root, loops_counter = classic_bisection(f, 1.0, 1.2, 5)
+print("\tThe root in [1.0, 1.2]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = classic_bisection(f, 2.2, 2.4, 5)
 print("\tThe root in [2.2, 2.4]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 print("Modified Bisection:")
 root, loops_counter = modified_bisection(f, 0.8, 1.0, 5)
-print("\tThe root in [0.8, 0.95]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+print("\tThe root in [0.8, 1.0]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
-root, loops_counter = modified_bisection(f, 1.0, 1.1, 5)
-print("\tThe root in [1.0, 1.1]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+root, loops_counter = modified_bisection(f, 1.0, 1.2, 5)
+print("\tThe root in [1.0, 1.2]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = modified_bisection(f, 2.2, 2.4, 5)
 print("\tThe root in [2.2, 2.4]: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
@@ -122,20 +122,20 @@ root, loops_counter = classic_newton_raphson(f, f_derivative, 0.8, 5)
 print("\tThe root near 0.8: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = classic_newton_raphson(f, f_derivative, 1.0, 5)
-print("\tThe root near 1.05: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+print("\tThe root near 1.0: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = classic_newton_raphson(f, f_derivative, 2.3, 5)
-print("\tThe root near 2.25: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+print("\tThe root near 2.3: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 print("Modified Newton-Raphson:")
 root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 0.8, 5)
 print("\tThe root near 0.8: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 1.0, 5)
-print("\tThe root near 1.05: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+print("\tThe root near 1.0: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 root, loops_counter = modified_newton_raphson(f, f_derivative, f_second_derivative, 2.3, 5)
-print("\tThe root near 2.25: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
+print("\tThe root near 2.3: {:f}. It was calculated in {:d} repetitions".format(root, loops_counter))
 
 print("---------------------------------------------------------------------------")
 

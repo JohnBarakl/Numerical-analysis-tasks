@@ -34,19 +34,20 @@ def PLU(A):
             U[rowNumber].append(element)
             P[rowNumber].append(0)
 
-        for r in range(len(U)):
-            P[r][r] = 1
+    for r in range(len(U)):
+        P[r][r] = 1
 
     for row_number in range(len(U) - 1):
         pivot_matrix(U, row_number, P)
         for other_row_num in range(row_number + 1, len(U)):
-            U[other_row_num][row_number] = U[other_row_num][row_number] / U[row_number][row_number]  # multiplier
+            U[other_row_num][row_number] = U[other_row_num][row_number] / U[row_number][row_number]
             for col_number in range(row_number + 1, len(U)):
                 U[other_row_num][col_number] = U[other_row_num][col_number] - (U[other_row_num][row_number]) * \
                                                U[row_number][col_number]
 
     L = [[0 for i in range(len(U))] for j in range(len(U))]
-    for i in range(len(U)): L[i][i] = 1
+    for i in range(len(U)):
+        L[i][i] = 1
     for i in range(1, len(U)):
         for j in range(i // 2 + 1):
             L[i][j] = U[i][j]
@@ -60,7 +61,6 @@ def solve_system(A, b):
 
     Pb = matrix_vector_multiplication(P, b)
 
-    # Solve Ly = Pb
     y = [0.0 for i in range(len(Pb))]
 
     for i in range(len(L)):
@@ -72,7 +72,6 @@ def solve_system(A, b):
             y[i] -= L[i][j] * y[j]
         y[i] = y[i] / L[i][i]
 
-    # Solve Ux = y
     x = [0.0 for i in range(len(y))]
 
     for i in range(len(U) - 1, -1, -1):
@@ -86,14 +85,3 @@ def solve_system(A, b):
 
     return x
 
-
-m = solve_system(
-    [
-        [1, -1, 3],
-        [-1, 0, -2],
-        [2, 2, 4]
-    ],
-    [-3, 1, 0]
-)
-
-print(m)
