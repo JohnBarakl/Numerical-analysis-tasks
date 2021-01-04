@@ -1,5 +1,8 @@
 from math import sin, pi
 
+from matplotlib import pyplot as plt
+
+
 def polynomial_approximate(function_points):
     x = []
     y = []
@@ -101,23 +104,30 @@ def main():
     given_x = [
         -pi,
         -(7 / 9) * pi,
-        -0.642788 - (5 / 9) * pi,
-        -0.984808 - pi / 3,
-        -pi / 9,
-        pi / 9,
-        pi / 3,
-        (5 / 9) * pi,
-        (7 / 9) * pi,
+         -0.642788 - (5 / 9) * pi,
+         -0.984808 - pi / 3,
+         -pi / 9,
+         pi / 9,
+         pi / 3,
+         (5 / 9) * pi,
+         (7 / 9) * pi,
         pi
     ]
+    x_points = []
+    y_difference_values = []
 
-    print("Approximation of given points:")
-    for i in range(10):
-        approximation = sin_approximation(given_x[i])
+    step = 2 * pi / 200
+    current_x = -pi
+    for i in range(200):
+        x_points.append(current_x)
+        y_difference_values.append(abs(sin_approximation(current_x) - sin(current_x)))
+        current_x += step
 
-        print("Approximation of sin({:f}) is {:f}, with absolute error: {:e}".format(
-            given_x[i], approximation, abs(sin(given_x[i]) - approximation))
-        )
+    plt.scatter(x_points, y_difference_values, s=1)
+    plt.title("Διάγραμμα απολύτου σφάλματος προσέγγισης")
+    plt.xlabel("x")
+    plt.ylabel("Απόλυτο σφάλμα προσέγγισης του ημιτόνου")
+    plt.show()
 
 
 if __name__ == '__main__':

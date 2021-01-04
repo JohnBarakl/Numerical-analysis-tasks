@@ -30,3 +30,25 @@ class Test(TestCase):
                 [5, 7]
             ]
         ), [-3, 2])
+
+    def test_polynomial_approximate3(self):
+        self.assertEqual(polynomial_approximate(
+            [
+                [0, 2],
+                [1, 1],
+                [2, 0],
+                [3, -1]
+            ]
+        ), [2, -1, 0, 0])
+
+    def test_polynomial_approximate4(self):
+        c = 0
+        res = [1, -0.5, 0.5]
+        for i in polynomial_approximate(
+                [
+                    [0, 1],
+                    [2, 2],
+                    [3, 4]
+                ]):
+            self.assertAlmostEqual(i, res[c])
+            c += 1

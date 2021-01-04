@@ -16,7 +16,7 @@ class Test(TestCase):
 
         solution = least_squares(A, b)
 
-        given_solution = [7/4, 3/4]
+        given_solution = [7 / 4, 3 / 4]
 
         with self.subTest():
             for i in range(len(solution)):
@@ -73,7 +73,7 @@ class Test(TestCase):
 
         result = approximate_function_with_least_squares(test_points, 1)
 
-        given_result = [3/4, 7/4]
+        given_result = [3 / 4, 7 / 4]
         given_result.reverse()
 
         with self.subTest():
@@ -81,6 +81,49 @@ class Test(TestCase):
         with self.subTest():
             self.assertAlmostEqual(given_result[1], result[1])
 
+    def test_approximate_function_with_least_squares4(self):
+        test_points = [
+            [-1, 1],
+            [0, 0],
+            [1, 0],
+            [2, -2]
+        ]
+
+        result = approximate_function_with_least_squares(test_points, 1)
+
+        p_coefficients = result
+
+        print("p(x) = ", "{:f}".format(p_coefficients[0]), end="")
+        print(" + {:f}x".format(p_coefficients[1]), end="")
+        for i in range(2, len(p_coefficients) - 1):
+            print(" + {:f}x^{:d}".format(p_coefficients[i], i), end=" ")
+        print(" + {:f}x^{:d}".format(p_coefficients[len(p_coefficients) - 1], len(p_coefficients) - 1))
+
+        given_result = [0.2, -0.9]
+
+        with self.subTest():
+            self.assertAlmostEqual(given_result[0], result[0])
+        with self.subTest():
+            self.assertAlmostEqual(given_result[1], result[1])
+
+    def test_approximate_function_with_least_squares5(self):
+        test_points = [
+            [-1, 1],
+            [0, 0],
+            [1, 0],
+            [2, -2]
+        ]
+
+        result = approximate_function_with_least_squares(test_points, 2)
+
+        given_result = [0.45, -0.65, -0.25]
+
+        with self.subTest():
+            self.assertAlmostEqual(given_result[0], result[0])
+        with self.subTest():
+            self.assertAlmostEqual(given_result[1], result[1])
+        with self.subTest():
+            self.assertAlmostEqual(given_result[2], result[2])
 
     def test_matrix_transposition(self):
         mat = [
@@ -142,7 +185,6 @@ class Test(TestCase):
                 with self.subTest():
                     self.assertEqual(given_matT[i][j], matT[i][j])
 
-
     def test_matrix_transposition4(self):
         mat = [
             [1, 2, 3],
@@ -162,8 +204,6 @@ class Test(TestCase):
                 with self.subTest():
                     self.assertEqual(given_matT[i][j], matT[i][j])
 
-
-
     def test_matrix_transposition5(self):
         mat = [
             [1, -3, -5]
@@ -181,7 +221,6 @@ class Test(TestCase):
             for j in range(len(mat)):
                 with self.subTest():
                     self.assertEqual(given_matT[i][j], matT[i][j])
-
 
     def test_matrix_multiplication(self):
         m1 = [
