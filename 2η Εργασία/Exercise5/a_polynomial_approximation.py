@@ -1,4 +1,5 @@
-from math import sin, pi
+from math import sin, pi, sqrt
+from random import uniform
 
 from matplotlib import pyplot as plt
 
@@ -84,21 +85,26 @@ def calculate_polynomial(coefficients, x):
 
 
 def main():
-    sin_training_points = []
-
-    x = -pi
-
-    for i in range(10):
-        sin_training_points.append([])
-        sin_training_points[i].append(x)
-        sin_training_points[i].append(round(sin(x), 6))
-        x += 2 * pi / 10
-        x = round(x, 6)
+    sin_training_points = [
+        [-pi, 0],
+        [-(7 / 9) * pi, -0.642788],
+        [-(5 / 9) * pi, -0.984808],
+        [-pi / 3, -0.866025],  # -sqrt(3) / 2
+        [-pi / 9, -0.342020],
+        [pi / 9, 0.342020],
+        [pi / 3, 0.866025],  # sqrt(3) / 2
+        [(5 / 9) * pi, 0.984808],
+        [(7 / 9) * pi, 0.642788],
+        [pi, 0]
+    ]
 
     p_coefficients = polynomial_approximate(sin_training_points)
 
-    for x, y in sin_training_points:
-        print("Difference in point x={:f} is {:e}".format(x, abs(calculate_polynomial(p_coefficients, x) - sin(x))))
+    print("p(x) = ", "{:f}".format(p_coefficients[0]), end="")
+    print(" + {:f}x".format(p_coefficients[1]), end="")
+    for i in range(2, len(p_coefficients) - 1):
+        print(" + {:f}x^{:d}".format(p_coefficients[i], i), end=" ")
+    print(" + {:f}x^{:d}".format(p_coefficients[len(p_coefficients) - 1], len(p_coefficients) - 1))
 
     x_points = []
     y_difference_values = []

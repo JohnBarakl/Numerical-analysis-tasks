@@ -2,6 +2,8 @@ from math import sin, pi
 
 from matplotlib import pyplot as plt
 
+import numpy
+
 
 def splines_approximate(function_points):
     coefficients_matrix = [[0 for j in range(4 * (len(function_points) - 1))] for i in
@@ -10,33 +12,18 @@ def splines_approximate(function_points):
 
     equasion_row = 0
 
-    for x_power in range(3, 0, -1):
-        coefficients_matrix[equasion_row][3 - x_power] = function_points[0][0] ** x_power
-    constants_matrix[equasion_row] = function_points[0][1]
-    coefficients_matrix[equasion_row][3] = 1
-    equasion_row += 1
-
-    for given_point_number in range(1, len(function_points) - 1):
+    for given_point_number in range(1, len(function_points)):
         for x_power in range(3, 0, -1):
             coefficients_matrix[equasion_row][3 - x_power + (given_point_number - 1) * 4] = \
+            function_points[given_point_number - 1][0] ** x_power
+            coefficients_matrix[equasion_row + 1][3 - x_power + (given_point_number - 1) * 4] = \
             function_points[given_point_number][0] ** x_power
-        constants_matrix[equasion_row] = function_points[given_point_number][1]
+        constants_matrix[equasion_row] = function_points[given_point_number - 1][1]
+        constants_matrix[equasion_row + 1] = function_points[given_point_number][1]
         coefficients_matrix[equasion_row][3 + (given_point_number - 1) * 4] = 1
-        equasion_row += 1
+        coefficients_matrix[equasion_row + 1][3 + (given_point_number - 1) * 4] = 1
 
-        for x_power in range(3, 0, -1):
-            coefficients_matrix[equasion_row][3 - x_power + given_point_number * 4] = \
-            function_points[given_point_number][0] ** x_power
-        constants_matrix[equasion_row] = function_points[given_point_number][1]
-        coefficients_matrix[equasion_row][3 + given_point_number * 4] = 1
-        equasion_row += 1
-
-    for x_power in range(3, 0, -1):
-        coefficients_matrix[equasion_row][3 - x_power + (len(function_points) - 2) * 4] = \
-        function_points[len(function_points) - 1][0] ** x_power
-    constants_matrix[equasion_row] = function_points[len(function_points) - 1][1]
-    coefficients_matrix[equasion_row][3 + (len(function_points) - 2) * 4] = 1
-    equasion_row += 1
+        equasion_row += 2
 
     for given_point_number in range(1, len(function_points) - 1):
         for x_power in range(2, 0, -1):
@@ -70,6 +57,8 @@ def splines_approximate(function_points):
     coefficients_matrix[equasion_row][1 + (len(function_points) - 2) * 4] = 2
     constants_matrix[equasion_row] = 0
 
+    np_solve = numpy.linalg.solve(coefficients_matrix, constants_matrix)
+
     splines_coefficients_array = solve_system(coefficients_matrix, constants_matrix)
     splines_coefficients_matrix = []
 
@@ -86,7 +75,7 @@ def splines_approximate(function_points):
 def calculate_spline(spline_coefficients, x):
     for i in range(len(spline_coefficients)):
         if spline_coefficients[i][0][0] <= x <= spline_coefficients[i][0][1]:
-            return spline_coefficients[i][1][0] * x**3 + spline_coefficients[i][1][1] * x**2 + \
+            return spline_coefficients[i][1][0] * x ** 3 + spline_coefficients[i][1][1] * x ** 2 + \
                    spline_coefficients[i][1][2] * x + spline_coefficients[i][1][3]
 
     return None
@@ -142,10 +131,11 @@ def PLU(A):
     L = [[0 for i in range(len(U))] for j in range(len(U))]
     for i in range(len(U)):
         L[i][i] = 1
-    for i in range(1, len(U)):
-        for j in range(i // 2 + 1):
-            L[i][j] = U[i][j]
-            U[i][j] = 0
+    for i in range(len(U)):
+        for j in range(len(U)):
+            if i > j:
+                L[i][j] = U[i][j]
+                U[i][j] = 0
 
     return P, L, U
 
@@ -197,51 +187,39 @@ def sort_xy_pairs(x, y):
 
 
 def main():
-    sin_training_points = []
-
-    x = -pi
-
-    for i in range(10):
-        sin_training_points.append([])
-        sin_training_points[i].append(x)
-        sin_training_points[i].append(round(sin(x), 6))
-        x += 2 * pi / 10
-        x = round(x, 6)
-
-    # splines_coefficients = splines_approximate(sin_training_points)
-
-    # TODO: Testing
-    test_points = [
-        [-1, 0],
-        [0, 2],
-        [1, 6]
+    sin_training_points = [
+        [-pi, 0],
+        [-(7 / 9) * pi, -0.642788],
+        [-(5 / 9) * pi, -0.984808],
+        [-pi / 3, -0.866025],  # -sqrt(3) / 2
+        [-pi / 9, -0.342020],
+        [pi / 9, 0.342020],
+        [pi / 3, 0.866025],  # sqrt(3) / 2
+        [(5 / 9) * pi, 0.984808],
+        [(7 / 9) * pi, 0.642788],
+        [pi, 0]
     ]
 
-    testRes = (splines_approximate(test_points))
+    splines_coefficients = splines_approximate(sin_training_points)
 
-    print(testRes)
+    print("s(x) = ")
+    for x_range, coefficients in splines_coefficients:
+        print("\t {:f}x^3 + {:f}x^2 + {:f}x + {:f}".format(coefficients[0], coefficients[1], coefficients[2],
+                                                           coefficients[3], ))
+    print()
 
-    print(calculate_spline(testRes, -1))
-    print(calculate_spline(testRes, 0))
-    print(calculate_spline(testRes, 1))
+    x_points = []
+    y_difference_values = []
 
-    # print(splines_coefficients)
+    step = 2 * pi / 200
+    target = -pi
+    for i in range(200):
+        x_points.append(target)
+        y_difference_values.append(abs(calculate_spline(splines_coefficients, target) - sin(target)))
+        target += step
 
-    # for x, y in sin_training_points:
-    #     print("Difference in point x={:f} is {:e}".format(x, abs(calculate_polynomial(p_coefficients, x) - sin(x))))
-    #
-    # x_points = []
-    # y_difference_values = []
-    #
-    # step = 2 * pi / 200
-    # target = -pi
-    # for i in range(200):
-    #     x_points.append(target)
-    #     y_difference_values.append(abs(calculate_polynomial(p_coefficients, target) - sin(target)))
-    #     target += step
-    #
-    # plt.scatter(x_points, y_difference_values, s=1)
-    # plt.show()
+    plt.scatter(x_points, y_difference_values, s=1)
+    plt.show()
 
 
 if __name__ == '__main__':

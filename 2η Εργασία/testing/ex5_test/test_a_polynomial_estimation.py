@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from Exercise5.a_polynomial_estimation import polynomial_approximate
+from Exercise5.a_polynomial_approximation import polynomial_approximate
 
 
 class Test(TestCase):
