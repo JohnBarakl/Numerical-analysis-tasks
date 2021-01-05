@@ -1,7 +1,5 @@
 from math import sin, pi
 
-from matplotlib import pyplot as plt
-
 
 def least_squares(A, b):
     AT = matrix_transposition(A)
@@ -188,5 +186,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-

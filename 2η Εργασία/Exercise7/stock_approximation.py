@@ -175,7 +175,7 @@ def main():
 
     max_absolute_prediction_error = -1
 
-    print("Close predictions of given data:")
+    print("Close price predictions of given data:")
     for i in range(len(ELL_stock)):
         approximate_value = calculate_polynomial(ELL_2nd_degree_approximation_coefficients, i)
         absolute_prediction_error = abs(ELL_stock[i][1] - approximate_value)
@@ -190,15 +190,16 @@ def main():
             ))
     print("Maximum absolute prediction error is {:f}\n".format(max_absolute_prediction_error))
 
-    print("Prediction of birthday close:")
+    print("Prediction of birthday close price:")
     approximate_value = calculate_polynomial(ELL_2nd_degree_approximation_coefficients, 10)
     print("\tPrediction of stock in 2/10/2020 : {:f}, with actual value being: {:f} and absolute error {:f}".format(
         approximate_value, 13.2000, abs(13.2000 - approximate_value)
     ))
     print()
 
-    print("Close prediction five days beyond given data: {:f}".format(
-        calculate_polynomial(ELL_2nd_degree_approximation_coefficients, 15)))
+    approximate_value = calculate_polynomial(ELL_2nd_degree_approximation_coefficients, 15)
+    print("Close price prediction five days beyond given data (in 09/10/2020): {:f}, with actual value being: {:f} and absolute error {:f}".format(
+        approximate_value, 13.4800, abs(13.4800 - approximate_value)))
     print()
 
     print("-------Third degree polynomial results-------\n")
@@ -206,7 +207,7 @@ def main():
     ELL_3rd_degree_approximation_coefficients = approximate_function_with_least_squares(ELL_stock, 3)
 
     max_absolute_prediction_error = -1
-    print("Close predictions of given data:")
+    print("Close price predictions of given data:")
     for i in range(len(ELL_stock)):
         approximate_value = calculate_polynomial(ELL_3rd_degree_approximation_coefficients, i)
         absolute_prediction_error = abs(ELL_stock[i][1] - approximate_value)
@@ -221,15 +222,16 @@ def main():
             ))
     print("Maximum absolute prediction error is {:f}\n".format(max_absolute_prediction_error))
 
-    print("Prediction of birthday close:")
+    print("Prediction of birthday close price:")
     approximate_value = calculate_polynomial(ELL_3rd_degree_approximation_coefficients, 10)
     print("\tPrediction of stock in 2/10/2020 : {:f}, with actual value being: {:f} and absolute error {:f}".format(
         approximate_value, 13.2000, abs(13.2000 - approximate_value)
     ))
     print()
 
-    print("Close prediction five days beyond given data: {:f}".format(
-        calculate_polynomial(ELL_3rd_degree_approximation_coefficients, 15)))
+    approximate_value = calculate_polynomial(ELL_3rd_degree_approximation_coefficients, 15)
+    print("Close price prediction five days beyond given data (in 09/10/2020): {:f}, with actual value being: {:f} and absolute error {:f}".format(
+        approximate_value, 13.4800, abs(13.4800 - approximate_value)))
     print()
 
     print("-------Fourth degree polynomial results-------\n")
@@ -237,7 +239,7 @@ def main():
     ELL_4th_degree_approximation_coefficients = approximate_function_with_least_squares(ELL_stock, 4)
 
     max_absolute_prediction_error = -1
-    print("Close predictions of given data:")
+    print("Close price predictions of given data:")
     for i in range(len(ELL_stock)):
         approximate_value = calculate_polynomial(ELL_4th_degree_approximation_coefficients, i)
         absolute_prediction_error = abs(ELL_stock[i][1] - approximate_value)
@@ -252,15 +254,16 @@ def main():
             ))
     print("Maximum absolute prediction error is {:f}\n".format(max_absolute_prediction_error))
 
-    print("Prediction of birthday close:")
+    print("Prediction of birthday close price:")
     approximate_value = calculate_polynomial(ELL_4th_degree_approximation_coefficients, 10)
     print("\tPrediction of stock in 2/10/2020 : {:f}, with actual value being: {:f} and absolute error {:f}".format(
         approximate_value, 13.2000, abs(13.2000 - approximate_value)
     ))
     print()
 
-    print("Close prediction five days beyond given data: {:f}".format(
-        calculate_polynomial(ELL_4th_degree_approximation_coefficients, 15)))
+    approximate_value = calculate_polynomial(ELL_4th_degree_approximation_coefficients, 15)
+    print("Close price prediction five days beyond given data (in 09/10/2020): {:f}, with actual value being: {:f} and absolute error {:f}".format(
+        approximate_value, 13.4800, abs(13.4800 - approximate_value)))
     print()
 
     print("\n=======================")
@@ -297,7 +300,7 @@ def main():
     ELIN_2nd_degree_approximation_coefficients = approximate_function_with_least_squares(ELIN_stock, 2)
 
     max_absolute_prediction_error = -1
-    print("Close predictions of given data:")
+    print("Close price predictions of given data:")
     for i in range(len(ELIN_stock)):
         approximate_value = calculate_polynomial(ELIN_2nd_degree_approximation_coefficients, i)
         absolute_prediction_error = abs(ELIN_stock[i][1] - approximate_value)
@@ -312,15 +315,16 @@ def main():
             ))
     print("Maximum absolute prediction error is {:f}\n".format(max_absolute_prediction_error))
 
-    print("Prediction of birthday close:")
+    print("Prediction of birthday close price:")
     approximate_value = calculate_polynomial(ELIN_2nd_degree_approximation_coefficients, 10)
     print("\tPrediction of stock in 2/10/2020 : {:f}, with actual value being: {:f} and absolute error {:f}".format(
         approximate_value, 1.4700, abs(1.4700 - approximate_value)
     ))
     print()
 
-    print("Close prediction five days beyond given data: {:f}".format(
-        calculate_polynomial(ELIN_2nd_degree_approximation_coefficients, 15)))
+    approximate_value = calculate_polynomial(ELIN_2nd_degree_approximation_coefficients, 15)
+    print("Close price prediction five days beyond given data (in 09/10/2020): {:f}, with actual value being: {:f} and absolute error {:f}".format(
+        approximate_value, 1.4300, abs(1.4300 - approximate_value)))
     print()
 
     print("-------Third degree polynomial results-------\n")
@@ -328,7 +332,7 @@ def main():
     ELIN_3rd_degree_approximation_coefficients = approximate_function_with_least_squares(ELIN_stock, 3)
 
     max_absolute_prediction_error = -1
-    print("Close predictions of given data:")
+    print("Close price predictions of given data:")
     for i in range(len(ELIN_stock)):
         approximate_value = calculate_polynomial(ELIN_3rd_degree_approximation_coefficients, i)
         absolute_prediction_error = abs(ELIN_stock[i][1] - approximate_value)
@@ -343,15 +347,16 @@ def main():
             ))
     print("Maximum absolute prediction error is {:f}\n".format(max_absolute_prediction_error))
 
-    print("Prediction of birthday close:")
+    print("Prediction of birthday close price:")
     approximate_value = calculate_polynomial(ELIN_3rd_degree_approximation_coefficients, 10)
     print("\tPrediction of stock in 2/10/2020 : {:f}, with actual value being: {:f} and absolute error {:f}".format(
         approximate_value, 1.4700, abs(1.4700 - approximate_value)
     ))
     print()
 
-    print("Close prediction five days beyond given data: {:f}".format(
-        calculate_polynomial(ELIN_3rd_degree_approximation_coefficients, 15)))
+    approximate_value = calculate_polynomial(ELIN_3rd_degree_approximation_coefficients, 15)
+    print("Close price prediction five days beyond given data (in 09/10/2020): {:f}, with actual value being: {:f} and absolute error {:f}".format(
+        approximate_value, 1.4300, abs(1.4300 - approximate_value)))
     print()
 
     print("-------Fourth degree polynomial results-------\n")
@@ -359,7 +364,7 @@ def main():
     ELIN_4th_degree_approximation_coefficients = approximate_function_with_least_squares(ELIN_stock, 4)
 
     max_absolute_prediction_error = -1
-    print("Close predictions of given data:")
+    print("Close price predictions of given data:")
     for i in range(len(ELIN_stock)):
         approximate_value = calculate_polynomial(ELIN_4th_degree_approximation_coefficients, i)
         absolute_prediction_error = abs(ELIN_stock[i][1] - approximate_value)
@@ -374,15 +379,16 @@ def main():
             ))
     print("Maximum absolute prediction error is {:f}\n".format(max_absolute_prediction_error))
 
-    print("Prediction of birthday close:")
+    print("Prediction of birthday close price:")
     approximate_value = calculate_polynomial(ELIN_4th_degree_approximation_coefficients, 10)
     print("\tPrediction of stock in 2/10/2020 : {:f}, with actual value being: {:f} and absolute error {:f}".format(
         approximate_value, 1.4700, abs(1.4700 - approximate_value)
     ))
     print()
 
-    print("Close prediction five days beyond given data: {:f}".format(
-        calculate_polynomial(ELIN_4th_degree_approximation_coefficients, 15)))
+    approximate_value = calculate_polynomial(ELIN_4th_degree_approximation_coefficients, 15)
+    print("Close price prediction five days beyond given data (in 09/10/2020): {:f}, with actual value being: {:f} and absolute error {:f}".format(
+        approximate_value, 1.4300, abs(1.4300 - approximate_value)))
     print()
 
 

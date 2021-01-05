@@ -101,22 +101,10 @@ def sin_approximation(x):
 
 
 def main():
-    given_x = [
-        -pi,
-        -(7 / 9) * pi,
-         -0.642788 - (5 / 9) * pi,
-         -0.984808 - pi / 3,
-         -pi / 9,
-         pi / 9,
-         pi / 3,
-         (5 / 9) * pi,
-         (7 / 9) * pi,
-        pi
-    ]
     x_points = []
     y_difference_values = []
 
-    step = 2 * pi / 200
+    step = 2 * pi / 199
     current_x = -pi
     for i in range(200):
         x_points.append(current_x)

@@ -164,28 +164,17 @@ def sin_approximation(x):
 
 
 def main():
-    given_x = [
-        -pi,
-        -(7 / 9) * pi,
-         -0.642788 - (5 / 9) * pi,
-         -0.984808 - pi / 3,
-         -pi / 9,
-         pi / 9,
-         pi / 3,
-         (5 / 9) * pi,
-         (7 / 9) * pi,
-        pi
-    ]
     x_points = []
     y_difference_values = []
 
-    step = 2 * pi / 200
+    step = 2 * pi / 199
     current_x = -pi
     for i in range(200):
         x_points.append(current_x)
         y_difference_values.append(abs(sin_approximation(current_x) - sin(current_x)))
         current_x += step
 
+    plt.scatter(x_points, y_difference_values, s=1)
     plt.title("Διάγραμμα απολύτου σφάλματος προσέγγισης")
     plt.xlabel("x")
     plt.ylabel("Απόλυτο σφάλμα προσέγγισης του ημιτόνου")
