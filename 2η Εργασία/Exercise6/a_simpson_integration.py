@@ -25,9 +25,7 @@ def simpson_sin_integral_from_points(points):
 
     integral = ((b - a) / (3 * N)) * area_sum
 
-    error = (((b - a) ** 5) / (180 * N ** 4))
-
-    return integral, error
+    return integral
 
 
 def main():
@@ -45,12 +43,16 @@ def main():
         [pi / 2, sin(pi / 2)]
     ]
 
-    sin_integral, sin_integral_theoretical_error = simpson_sin_integral_from_points(chosen_points)
+    a = chosen_points[0][0]
+    b = chosen_points[len(chosen_points) - 1][0]
+    N = len(chosen_points) - 1
 
+    sin_integral = simpson_sin_integral_from_points(chosen_points)
+    sin_integral_theoretical_error = (((b - a) ** 5) / (180 * N ** 4))
     arithmetical_error = sin_integral - 1
 
     print("Sin integral with simpson from 11 chosen points: {:f}".format(sin_integral))
-    print("Theoretical error: {:f}, and arithmetical error: {:f}".format(sin_integral_theoretical_error,
+    print("Theoretical error: {:e}, and arithmetical error: {:e}".format(sin_integral_theoretical_error,
                                                                          arithmetical_error))
 
 
