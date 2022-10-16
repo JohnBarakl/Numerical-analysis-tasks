@@ -12,52 +12,49 @@ def splines_approximate(function_points):
     for i in range(len(x)):
         x_y.append([x[i], y[i]])
 
-    coefficients_matrix = [[0 for j in range(4 * (len(x_y) - 1))] for i in
-                           range(4 * (len(x_y) - 1))]
+    coefficients_matrix = [[0 for j in range(4 * (len(x_y) - 1))] for i in range(4 * (len(x_y) - 1))]
     constants_matrix = [0 for i in range(4 * (len(x_y) - 1))]
 
-    equasion_row = 0
+    equation_row = 0
 
     for given_point_number in range(1, len(x_y)):
         for x_power in range(3, 0, -1):
-            coefficients_matrix[equasion_row][3 - x_power + (given_point_number - 1) * 4] = \
-                x_y[given_point_number - 1][0] ** x_power
-            coefficients_matrix[equasion_row + 1][3 - x_power + (given_point_number - 1) * 4] = \
-                x_y[given_point_number][0] ** x_power
-        constants_matrix[equasion_row] = x_y[given_point_number - 1][1]
-        constants_matrix[equasion_row + 1] = x_y[given_point_number][1]
-        coefficients_matrix[equasion_row][3 + (given_point_number - 1) * 4] = 1
-        coefficients_matrix[equasion_row + 1][3 + (given_point_number - 1) * 4] = 1
+            coefficients_matrix[equation_row][3 - x_power + (given_point_number - 1) * 4] = x_y[given_point_number - 1][0] ** x_power
+            coefficients_matrix[equation_row + 1][3 - x_power + (given_point_number - 1) * 4] = x_y[given_point_number][0] ** x_power
+        constants_matrix[equation_row] = x_y[given_point_number - 1][1]
+        constants_matrix[equation_row + 1] = x_y[given_point_number][1]
+        coefficients_matrix[equation_row][3 + (given_point_number - 1) * 4] = 1
+        coefficients_matrix[equation_row + 1][3 + (given_point_number - 1) * 4] = 1
 
-        equasion_row += 2
+        equation_row += 2
 
     for given_point_number in range(1, len(x_y) - 1):
         for x_power in range(2, 0, -1):
-            coefficients_matrix[equasion_row][2 - x_power + (given_point_number - 1) * 4] = (x_y[given_point_number][0] ** x_power) * (x_power + 1)
-            coefficients_matrix[equasion_row][2 - x_power + given_point_number * 4] = -1 * (x_y[given_point_number][0] ** x_power) * (x_power + 1)
-        coefficients_matrix[equasion_row][2 + (given_point_number - 1) * 4] = 1
-        coefficients_matrix[equasion_row][2 + given_point_number * 4] = -1
-        constants_matrix[equasion_row] = 0
+            coefficients_matrix[equation_row][2 - x_power + (given_point_number - 1) * 4] = (x_y[given_point_number][0] ** x_power) * (x_power + 1)
+            coefficients_matrix[equation_row][2 - x_power + given_point_number * 4] = -1 * (x_y[given_point_number][0] ** x_power) * (x_power + 1)
+        coefficients_matrix[equation_row][2 + (given_point_number - 1) * 4] = 1
+        coefficients_matrix[equation_row][2 + given_point_number * 4] = -1
+        constants_matrix[equation_row] = 0
 
-        equasion_row += 1
+        equation_row += 1
 
     for given_point_number in range(1, len(x_y) - 1):
-        coefficients_matrix[equasion_row][(given_point_number - 1) * 4] = x_y[given_point_number][0] * 6
-        coefficients_matrix[equasion_row][given_point_number * 4] = -1 * x_y[given_point_number][0] * 6
-        coefficients_matrix[equasion_row][1 + (given_point_number - 1) * 4] = 2
-        coefficients_matrix[equasion_row][1 + given_point_number * 4] = -2
-        constants_matrix[equasion_row] = 0
+        coefficients_matrix[equation_row][(given_point_number - 1) * 4] = x_y[given_point_number][0] * 6
+        coefficients_matrix[equation_row][given_point_number * 4] = -1 * x_y[given_point_number][0] * 6
+        coefficients_matrix[equation_row][1 + (given_point_number - 1) * 4] = 2
+        coefficients_matrix[equation_row][1 + given_point_number * 4] = -2
+        constants_matrix[equation_row] = 0
 
-        equasion_row += 1
+        equation_row += 1
 
-    coefficients_matrix[equasion_row][0] = x_y[0][0] * 6
-    coefficients_matrix[equasion_row][1] = 2
-    constants_matrix[equasion_row] = 0
-    equasion_row += 1
+    coefficients_matrix[equation_row][0] = x_y[0][0] * 6
+    coefficients_matrix[equation_row][1] = 2
+    constants_matrix[equation_row] = 0
+    equation_row += 1
 
-    coefficients_matrix[equasion_row][(len(x_y) - 2) * 4] = x_y[len(x_y) - 1][0] * 6
-    coefficients_matrix[equasion_row][1 + (len(x_y) - 2) * 4] = 2
-    constants_matrix[equasion_row] = 0
+    coefficients_matrix[equation_row][(len(x_y) - 2) * 4] = x_y[len(x_y) - 1][0] * 6
+    coefficients_matrix[equation_row][1 + (len(x_y) - 2) * 4] = 2
+    constants_matrix[equation_row] = 0
 
     splines_coefficients_array = solve_system(coefficients_matrix, constants_matrix)
     splines_coefficients_matrix = []
@@ -75,8 +72,7 @@ def splines_approximate(function_points):
 def calculate_spline(spline_coefficients, x):
     for i in range(len(spline_coefficients)):
         if spline_coefficients[i][0][0] <= x <= spline_coefficients[i][0][1]:
-            return spline_coefficients[i][1][0] * x ** 3 + spline_coefficients[i][1][1] * x ** 2 + \
-                   spline_coefficients[i][1][2] * x + spline_coefficients[i][1][3]
+            return spline_coefficients[i][1][0] * x ** 3 + spline_coefficients[i][1][1] * x ** 2 + spline_coefficients[i][1][2] * x + spline_coefficients[i][1][3]
 
     return None
 
@@ -125,8 +121,7 @@ def PLU(A):
         for other_row_num in range(row_number + 1, len(U)):
             U[other_row_num][row_number] = U[other_row_num][row_number] / U[row_number][row_number]
             for col_number in range(row_number + 1, len(U)):
-                U[other_row_num][col_number] = U[other_row_num][col_number] - (U[other_row_num][row_number]) * \
-                                               U[row_number][col_number]
+                U[other_row_num][col_number] = U[other_row_num][col_number] - (U[other_row_num][row_number]) * U[row_number][col_number]
 
     L = [[0 for i in range(len(U))] for j in range(len(U))]
     for i in range(len(U)):

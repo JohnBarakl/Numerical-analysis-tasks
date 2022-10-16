@@ -101,8 +101,7 @@ def PLU(A):
         for other_row_num in range(row_number + 1, len(U)):
             U[other_row_num][row_number] = U[other_row_num][row_number] / U[row_number][row_number]
             for col_number in range(row_number + 1, len(U)):
-                U[other_row_num][col_number] = U[other_row_num][col_number] - (U[other_row_num][row_number]) * \
-                                               U[row_number][col_number]
+                U[other_row_num][col_number] = U[other_row_num][col_number] - (U[other_row_num][row_number]) * U[row_number][col_number]
 
     L = [[0 for i in range(len(U))] for j in range(len(U))]
     for i in range(len(U)):
